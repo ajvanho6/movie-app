@@ -1,0 +1,69 @@
+$app-layout: (
+    header-height: 50px,
+    sub-header-height: 50px,
+    footer-height: 30px,
+    base-padding: 15px,
+    icon-margin: 10px,
+    base-border-radius: 5px,
+    container-width: 1366px,
+    page-name-width: 110px,
+);
+
+$brand-settings: (
+    input-width: 370px,
+);
+
+$colors: (
+    background-1: #f5f6f8,
+    background-2: #e0e0e0,
+    background-3: #ebebeb,
+    background-4: #bbb,
+    background-5: #fff,
+    background-6: #1e3a5a,
+    background-7: #0080ff,
+    background-8: #d0021b,
+    background-9: #bababa,
+    background-10: #747f88,
+    background-11: #59c46d,
+    background-12: #b5e5c1,
+    background-13: #202225,
+    background-14: #fbfbfb,
+    background-15: #000,
+    background-16: #006cd9,
+    text-1: #9b9b9b,
+    text-2: #747f88,
+    text-3: #1e3a5a,
+    text-4: #fff,
+    text-5: #0080ff,
+    text-6: #d0021b,
+    text-7: #59c46d,
+    text-8: #b9b9b9,
+    text-9: #ebebeb,
+    text-10: #e0e0e0,
+    text-11: #bbb,
+);
+
+$typeface: (
+    primary-font-family: 'Roboto',
+    primary-font-letterform: sans-serif,
+    primary-font-size: 14px,
+    primary-font-weight: normal,
+    primary-font-style: normal,
+    secondary-font-weigth: bold,
+    third-font-weight: 500,
+    h1-font-size: 48px,
+    h2-font-size: 28px,
+    h3-font-size: 24px,
+    h4-font-size: 17px,
+    h5-font-size: 16px,
+    h6-font-size: 14px,
+    p-font-size: 14px,
+    ultra-small-font-size: 11px,
+    small-font-size: 12px,
+    small-font-size-2: 13px,
+    medium-font-size: 30px,
+);
+
+$paths: (
+    asset-path: './assets/icons',
+);
