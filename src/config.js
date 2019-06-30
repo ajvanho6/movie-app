@@ -6,5 +6,5 @@ export default {
     BUILD: process.env.BUILD,
     BASE_API_URL: process.env.BASE_API_URL,
     API_KEY: process.env.API_KEY,
+    ROOT: '/',
 };
-
