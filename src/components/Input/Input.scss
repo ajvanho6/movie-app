@@ -1,0 +1,23 @@
+@import '../../styles/config';
+@import '../../styles/mixins';
+
+$component-class: s-input;
+
+.#{$component-class} {
+
+    display: flex;
+    justify-content: center;
+
+
+    input {
+        display: block;
+        width: 236px;
+        height: 40px;
+        background: map-get($colors, background-2);
+        margin-right: 10px;
+    }
+}
+
+.s-input-group {
+    display: flex;
+}

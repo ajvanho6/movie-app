@@ -4,7 +4,7 @@ import routes from './routes';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Page from './components/Page/Page';
-import SearchMovie from './components/SearchMovie/SearchMovie';
+import SearchView from './views/SearchView/SearchView';
 
 const components = {
     navigation: Header,
@@ -14,7 +14,7 @@ const components = {
 const App = () => (
     <Router key={new Date()} history={browserHistory}>
         <Route path={routes.ROOT} component={Page}>
-            <IndexRoute components={{...components, content: SearchMovie}} />
+            <IndexRoute components={{...components, content: SearchView}} />
             {/* <Route
                 path={}
                 onEnter={t=}

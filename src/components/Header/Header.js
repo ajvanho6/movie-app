@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
 
+import './Header.scss';
+
 class Header extends Component {
     state = {};
 
     render() {
         return (
-            <div>
-                Header
+            <div className="m-app-header">
+                Cinematic
             </div>
         );
     }

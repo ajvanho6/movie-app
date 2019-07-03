@@ -3,7 +3,7 @@ import {combineReducers} from 'redux';
 import movieReducer from './reducers/movieReducer';
 
 // Combine application reducers
-const createRootReducer = history => combineReducers({
+const createRootReducer = () => combineReducers({
     movies: movieReducer,
 });
 

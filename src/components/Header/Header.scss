@@ -1,0 +1,13 @@
+@import '../../styles/config';
+@import '../../styles/mixins';
+
+$component-class: m-app-header;
+
+.#{$component-class} {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    background: map-get($colors, background-10);
+}

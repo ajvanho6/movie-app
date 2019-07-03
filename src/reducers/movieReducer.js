@@ -2,10 +2,11 @@ import * as movieActionTypes from '../actionTypes/movieActionTypes';
 
 const initialState = {
     isSearchingMovie: false,
+    movies: [],
 };
 
 const movieReducer = (state = initialState, action) => {
-    const {type} = action;
+    const {type, payload} = action;
 
     switch (type) {
         case movieActionTypes.SEARCH_MOVIE_REQUEST: {

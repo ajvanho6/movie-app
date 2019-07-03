@@ -19,12 +19,12 @@ export const searchMovie = function* searchMovie({payload}) {
             },
         });
 
-        const movie = yield call(searchMovieApi, query);
+        const movies = yield call(searchMovieApi, {query});
 
         yield put({
             type: movieActionTypes.SEARCH_MOVIE_SUCCESS,
             payload: {
-                movie,
+                movies,
             },
         });
     } catch (error) {

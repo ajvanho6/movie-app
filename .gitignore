@@ -3,5 +3,7 @@ node_modules/
 /hot/
 /coverage/
 npm-debug.log
+.env
 .env.*
 .env.example
+.DS_Store
