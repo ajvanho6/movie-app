@@ -1,33 +1,34 @@
+import {List, Map} from 'immutable';
 import * as movieActionTypes from '../actionTypes/movieActionTypes';
 
-const initialState = {
-    isSearchingMovie: false,
-    movies: [],
-};
+export const IS_SEARCHING_MOVIES = 'isSearchingMovies';
+export const ALL_MOVIES = 'allMovies';
+
+const initialState = Map({
+    [ALL_MOVIES]: List([]),
+    [IS_SEARCHING_MOVIES]: false,
+});
 
 const movieReducer = (state = initialState, action) => {
     const {type, payload} = action;
 
     switch (type) {
         case movieActionTypes.SEARCH_MOVIE_REQUEST: {
-            return {
-                ...state,
-                isSearchingMovie: true,
-            };
+            return state
+                .set(IS_SEARCHING_MOVIES, true);
         }
 
         case movieActionTypes.SEARCH_MOVIE_SUCCESS: {
-            return {
-                ...state,
-                isSearchingMovie: false,
-            };
+            const {movies} = payload;
+
+            return state
+                .set(IS_SEARCHING_MOVIES, false)
+                .set(ALL_MOVIES, List(movies.results));
         }
 
         case movieActionTypes.SEARCH_MOVIE_ERROR: {
-            return {
-                ...state,
-                isSearchingMovie: false,
-            };
+            return state
+                .set(IS_SEARCHING_MOVIES, false);
         }
 
         default:

@@ -1,0 +1,16 @@
+@import '../../styles/config';
+@import '../../styles/mixins';
+
+$component-class: m-app-footer;
+
+.#{$component-class} {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+    span {
+        margin-left: 5px;
+    }
+}

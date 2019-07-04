@@ -1,0 +1,9 @@
+@import '../../styles/config';
+@import '../../styles/mixins';
+
+$component-class: m-app-search-view;
+
+.#{$component-class} {
+    height: calc(100vh - 90px);
+    overflow-y: scroll;
+}

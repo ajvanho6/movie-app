@@ -1,0 +1,40 @@
+@import '../../styles/config';
+@import '../../styles/mixins';
+
+$component-class: m-app-movie-list;
+
+.#{$component-class} {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    max-width: 800px;
+    margin: 0 auto;
+
+    img {
+        margin-right: 16px;
+    }
+
+    p {
+        margin: 16px auto;
+    }
+
+    &__item-inner {
+        display: flex;
+    }
+
+    &__item {
+        list-style: none;
+        padding: 10px;
+    }
+
+    &__info-holder {
+        display: flex;
+        flex-direction: column;
+        height: 278px;
+        justify-content: center;
+    }
+
+    &__rating {
+        margin-bottom: 8px;
+    }
+}

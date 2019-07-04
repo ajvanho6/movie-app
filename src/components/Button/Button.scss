@@ -1,0 +1,8 @@
+@import '../../styles/config';
+@import '../../styles/mixins';
+
+$component-class: m-app-button;
+
+.#{$component-class} {
+    position: relative;
+}

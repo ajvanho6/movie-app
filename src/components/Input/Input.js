@@ -6,7 +6,7 @@ import './Input.scss';
 
 const Input = ({className, ...rest}) => {
     const classes = classNames(
-        's-input',
+        'm-app-input',
         className,
     );
 
