@@ -3,6 +3,7 @@ import {
     IS_SEARCHING_MOVIES,
     ALL_MOVIES,
     FAVORITE_MOVIES,
+    MOVIE_TRAILERS,
 } from '../reducers/movieReducer';
 
 export const selectMovies = state => state.movies;
@@ -23,6 +24,15 @@ export const createFavoritesMoviesSelector = () => createSelector(
     ],
     movies => {
         return movies.get(FAVORITE_MOVIES).toJS();
+    },
+);
+
+export const createMoviesTrailerSelector = () => createSelector(
+    [
+        selectMovies,
+    ],
+    movies => {
+        return movies.get(MOVIE_TRAILERS).toJS();
     },
 );
 

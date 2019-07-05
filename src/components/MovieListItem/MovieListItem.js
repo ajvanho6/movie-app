@@ -16,6 +16,11 @@ class MovieListItem extends Component {
     static propTypes = {
         movie: PropTypes.object.isRequired,
         addFavorites: PropTypes.func.isRequired,
+        isFavoriteListEmpty: PropTypes.bool,
+    };
+
+    static defaultProps = {
+        isFavoriteListEmpty: false,
     };
 
     state = {
@@ -23,14 +28,14 @@ class MovieListItem extends Component {
     };
 
     addFavorites = favoriteMovie => {
-        this.setState(previousState => ({
-            isFavorite: !previousState.isFavorite,
-        }));
+        this.setState({
+            isFavorite: true,
+        });
         this.props.addFavorites(favoriteMovie);
     }
 
     render() {
-        const {movie} = this.props;
+        const {movie, isFavoriteListEmpty} = this.props;
         const {isFavorite} = this.state;
 
         return (
@@ -47,7 +52,7 @@ class MovieListItem extends Component {
                     <div className="m-app-movie-list-item__info-holder">
                         <div className={classNames({
                             'm-app-movie-list-item__favorites': true,
-                            'm-app-movie-list-item__favorites--is-favorite': isFavorite,
+                            'm-app-movie-list-item__favorites--is-favorite': isFavorite && isFavoriteListEmpty,
                         })}
                         >
                             <span>Add to favorites</span>

@@ -14,3 +14,8 @@ export const resetFavorites = payload => ({
     type: movieActionTypes.REMOVE_MOVIE_FROM_FAVORITES,
     payload,
 });
+
+export const fetchMovieTrailer = payload => ({
+    type: movieActionTypes.FETCH_MOVIE_TRAILER,
+    payload,
+});

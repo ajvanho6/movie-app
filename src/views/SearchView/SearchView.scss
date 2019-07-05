@@ -6,4 +6,10 @@ $component-class: m-app-search-view;
 .#{$component-class} {
     height: calc(100vh - 90px);
     overflow-y: scroll;
+
+    &__favorites {
+        position: fixed;
+        top: 150px;
+        right: 80px;
+    }
 }

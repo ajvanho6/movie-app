@@ -1,7 +1,7 @@
 import {call, put, all, takeEvery} from 'redux-saga/effects';
 
 import * as movieActionTypes from '../actionTypes/movieActionTypes';
-import {searchMovieApi} from '../api/movieApi';
+import {searchMovieApi, fetchMovieTrailerApi} from '../api/movieApi';
 
 
 export const searchMovie = function* searchMovie({payload}) {
@@ -35,8 +35,36 @@ export const searchMovie = function* searchMovie({payload}) {
     }
 };
 
+export const fetchMovieTrailer = function* fetchMovieTrailer({payload}) {
+    const {movieID} = payload;
+
+    try {
+        yield put({
+            type: movieActionTypes.FETCH_MOVIE_TRAILER_REQUEST,
+            payload: {
+                movieID,
+            },
+        });
+
+        const trailer = yield call(fetchMovieTrailerApi, {movieID});
+
+        yield put({
+            type: movieActionTypes.FETCH_MOVIE_TRAILER_SUCCESS,
+            payload: {
+                trailer,
+            },
+        });
+    } catch (error) {
+        yield put({
+            type: movieActionTypes.FETCH_MOVIE_TRAILER_ERROR,
+            error: error,
+        });
+    }
+};
+
 export const searchMovieWatcher = function* searchMovieWatcher() {
     yield all([
         takeEvery(movieActionTypes.SEARCH_MOVIE, searchMovie),
+        takeEvery(movieActionTypes.FETCH_MOVIE_TRAILER, fetchMovieTrailer),
     ]);
 };

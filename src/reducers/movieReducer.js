@@ -4,10 +4,12 @@ import * as movieActionTypes from '../actionTypes/movieActionTypes';
 export const IS_SEARCHING_MOVIES = 'isSearchingMovies';
 export const ALL_MOVIES = 'allMovies';
 export const FAVORITE_MOVIES = 'favoriteMovies';
+export const MOVIE_TRAILERS = 'movieTrailers';
 
 const initialState = Map({
     [ALL_MOVIES]: List([]),
     [FAVORITE_MOVIES]: List([]),
+    [MOVIE_TRAILERS]: List([]),
     [IS_SEARCHING_MOVIES]: false,
 });
 
@@ -43,6 +45,20 @@ const movieReducer = (state = initialState, action) => {
         case movieActionTypes.REMOVE_MOVIE_FROM_FAVORITES: {
             return state
                 .set(FAVORITE_MOVIES, List([]));
+        }
+
+        case movieActionTypes.FETCH_MOVIE_TRAILER_REQUEST: {
+            return state;
+        }
+
+        case movieActionTypes.FETCH_MOVIE_TRAILER_SUCCESS: {
+            const {trailer} = payload;
+            return state
+                .update(MOVIE_TRAILERS, movieTrailer => movieTrailer.push(trailer));
+        }
+
+        case movieActionTypes.FETCH_MOVIE_TRAILER_ERROR: {
+            return state;
         }
 
         default:

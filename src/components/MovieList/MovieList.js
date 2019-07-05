@@ -8,12 +8,16 @@ import MovieListItem from '../MovieListItem/MovieListItem';
 class MovieList extends Component {
     static propTypes = {
         movies: PropTypes.array,
+        isFavoriteListEmpty: PropTypes.bool,
         addMovieToFavorites: PropTypes.func,
+        fetchMovieTrailer: PropTypes.func,
     };
 
    static defaultProps = {
        movies: [],
+       isFavoriteListEmpty: false,
        addMovieToFavorites: () => {},
+       fetchMovieTrailer: () => {},
    };
 
     state = {}
@@ -22,11 +26,16 @@ class MovieList extends Component {
         this.props.addMovieToFavorites({
             favoriteMovie,
         });
+
+        this.fetchMovieTrailer(favoriteMovie.id);
+    }
+
+    fetchMovieTrailer = movieID => {
+        this.props.fetchMovieTrailer({movieID});
     }
 
     render() {
-        const {movies} = this.props;
-        const {isFavorite} = this.state;
+        const {movies, isFavoriteListEmpty} = this.props;
 
         return (
             <ul className="m-app-movie-list">
@@ -36,8 +45,8 @@ class MovieList extends Component {
                             <MovieListItem
                                 key={movie.id || null}
                                 movie={movie}
-                                isFavorite={isFavorite}
                                 addFavorites={this.addFavorites}
+                                isFavoriteListEmpty={isFavoriteListEmpty}
                             />
                         );
                     })
