@@ -7,4 +7,36 @@ $component-class: m-app-search-form;
     display: flex;
     justify-content: center;
     margin: 32px auto;
+
+    .react-autosuggest__container {
+        position: relative;
+    }
+
+    .react-autosuggest__input {
+        padding: 10px 8px;
+        border: none;
+        min-width: 250px;
+
+        @include base-box-shadow();
+    }
+
+    .react-autosuggest__suggestions-list {
+        list-style: none;
+        position: absolute;
+        z-index: 9;
+        width: 100%;
+
+        @include paper-base();
+        padding: 8px;
+    }
+
+    .react-autosuggest__suggestion {
+        padding: 4px;
+
+        &:hover {
+            cursor: pointer;
+            color: map-get($colors, text-4);
+            background: map-get($colors, background-6);
+        }
+    }
 }

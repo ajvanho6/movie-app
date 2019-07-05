@@ -7,6 +7,7 @@ $component-class: m-app-movie-list-item;
     list-style: none;
     padding: 10px;
     border-bottom: 1px solid map-get($colors ,background-10);
+    position: relative;
 
     &:last-child {
         border-bottom: none;
@@ -28,7 +29,9 @@ $component-class: m-app-movie-list-item;
     }
 
     &__favorites {
-        margin-left: auto;
+        position: absolute;
+        top: 20px;
+        right: 20px;
 
         span {
             margin-right: 8px;

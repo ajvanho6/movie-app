@@ -13,7 +13,7 @@ import {
     createMoviesTrailerSelector,
 } from '../../selectors/movieSelectors';
 import FavoriteList from '../../components/FavoriteList/FavoriteList';
-
+import {generateSearchMovieByQueryUrl} from '../../api/movieApi';
 
 class SearchView extends Component {
     static propTypes = {
@@ -39,20 +39,15 @@ class SearchView extends Component {
     };
 
     state = {
-        query: '',
+        value: '',
         isFavoritesListShown: false,
+        suggestions: [],
     };
 
-    handleSearchQuery = e => {
-        this.setState({
-            query: e.target.value,
-        });
-    }
-
     createPayload = () => {
-        const {query} = this.state;
+        const {value} = this.state;
         return {
-            query,
+            query: value,
         };
     }
 
@@ -83,10 +78,27 @@ class SearchView extends Component {
 
     resetFavorites = () => {
         this.setState({
-            query: '',
+            value: '',
         });
         this.props.resetFavorites();
         this.hideFavoriteList();
+    }
+
+    handleAutoSuggestChange = (event, {newValue}) => {
+        this.setState({value: newValue});
+    }
+
+    onSuggestionsClearRequested = () => {
+        this.setState({suggestions: []});
+    };
+
+    onSuggestionsFetchRequested = ({value}) => {
+        fetch(`https://api.themoviedb.org/3${generateSearchMovieByQueryUrl(value)}`, {headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        }})
+            .then(response => response.json())
+            .then(data => this.setState({suggestions: data.results}));
     }
 
     render() {
@@ -98,15 +110,23 @@ class SearchView extends Component {
             trailers,
         } = this.props;
 
-        const {query, isFavoritesListShown} = this.state;
+        const {
+            isFavoritesListShown,
+            suggestions,
+            value,
+        } = this.state;
 
         return (
             <div className="m-app-search-view">
                 {!isFavoritesListShown && (
                     <SearchForm
-                        query={query}
                         handleSubmit={this.handleSubmit}
-                        handleSearchQuery={this.handleSearchQuery}
+                        suggestions={suggestions}
+                        onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+                        onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+                        handleAutoSuggestChange={this.handleAutoSuggestChange}
+                        onSuggestionSelected={this.handleSubmit}
+                        value={value}
                     />
                 )}
                 <div>
