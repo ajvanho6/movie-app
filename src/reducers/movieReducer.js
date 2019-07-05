@@ -3,9 +3,11 @@ import * as movieActionTypes from '../actionTypes/movieActionTypes';
 
 export const IS_SEARCHING_MOVIES = 'isSearchingMovies';
 export const ALL_MOVIES = 'allMovies';
+export const FAVORITE_MOVIES = 'favoriteMovies';
 
 const initialState = Map({
     [ALL_MOVIES]: List([]),
+    [FAVORITE_MOVIES]: List([]),
     [IS_SEARCHING_MOVIES]: false,
 });
 
@@ -29,6 +31,18 @@ const movieReducer = (state = initialState, action) => {
         case movieActionTypes.SEARCH_MOVIE_ERROR: {
             return state
                 .set(IS_SEARCHING_MOVIES, false);
+        }
+
+        // local savings no required session_id for api /favourite endpoint
+        case movieActionTypes.ADD_MOVIE_TO_FAVORITES: {
+            const {favoriteMovie} = payload;
+            return state
+                .update(FAVORITE_MOVIES, favoriteMovies => favoriteMovies.push(favoriteMovie));
+        }
+
+        case movieActionTypes.REMOVE_MOVIE_FROM_FAVORITES: {
+            return state
+                .set(FAVORITE_MOVIES, List([]));
         }
 
         default:

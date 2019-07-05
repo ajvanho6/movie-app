@@ -1,0 +1,10 @@
+@import '../../styles/config';
+@import '../../styles/mixins';
+
+$component-class: m-app-favorite-list;
+
+.#{$component-class} {
+    position: fixed;
+    top: 150px;
+    right: 100px;
+}

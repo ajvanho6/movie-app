@@ -2,6 +2,7 @@ import {createSelector} from 'reselect';
 import {
     IS_SEARCHING_MOVIES,
     ALL_MOVIES,
+    FAVORITE_MOVIES,
 } from '../reducers/movieReducer';
 
 export const selectMovies = state => state.movies;
@@ -13,6 +14,15 @@ export const createAllMoviesSelector = () => createSelector(
     ],
     movies => {
         return movies.get(ALL_MOVIES).toJS();
+    },
+);
+
+export const createFavoritesMoviesSelector = () => createSelector(
+    [
+        selectMovies,
+    ],
+    movies => {
+        return movies.get(FAVORITE_MOVIES).toJS();
     },
 );
 

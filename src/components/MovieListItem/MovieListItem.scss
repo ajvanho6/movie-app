@@ -1,0 +1,51 @@
+@import '../../styles/config';
+@import '../../styles/mixins';
+
+$component-class: m-app-movie-list-item;
+
+.#{$component-class} {
+    list-style: none;
+    padding: 10px;
+    border-bottom: 1px solid map-get($colors ,background-10);
+
+    &:last-child {
+        border-bottom: none;
+    }
+
+    &__inner {
+        display: flex;
+    }
+
+    &__info-holder {
+        display: flex;
+        flex-direction: column;
+        height: 278px;
+        justify-content: center;
+    }
+
+    &__rating {
+        margin-bottom: 8px;
+    }
+
+    &__favorites {
+        margin-left: auto;
+
+        span {
+            margin-right: 8px;
+        }
+
+        .fa-star {
+            color: map-get($colors ,background-10);
+            font-size: 20px;
+            transition: all .3s ease;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        &--is-favorite .fa-star {
+            color: map-get($colors ,background-17);
+        }
+    }
+}

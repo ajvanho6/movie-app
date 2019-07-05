@@ -1,0 +1,8 @@
+@import '../../styles/config';
+@import '../../styles/mixins';
+
+$component-class: m-app-favorite-list-item;
+
+.#{$component-class} {
+    display: flex;
+}
