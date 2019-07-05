@@ -10,4 +10,6 @@ $component-class: m-app-header;
     justify-content: center;
     height: 50px;
     background: map-get($colors, background-10);
+    font-size: 32px;
+    font-weight: 500;
 }

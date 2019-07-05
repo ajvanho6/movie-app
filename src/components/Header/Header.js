@@ -8,7 +8,7 @@ class Header extends Component {
     render() {
         return (
             <div className="m-app-header">
-                Cinematic
+                cInematic
             </div>
         );
     }

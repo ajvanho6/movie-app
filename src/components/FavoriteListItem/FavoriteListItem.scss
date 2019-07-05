@@ -5,4 +5,9 @@ $component-class: m-app-favorite-list-item;
 
 .#{$component-class} {
     display: flex;
+    list-style: none;
+
+    h2 {
+        margin: 8px auto;
+    }
 }

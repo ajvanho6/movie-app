@@ -5,4 +5,19 @@ $component-class: m-app-favorite-list;
 
 .#{$component-class} {
     position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 16px;
+    max-width: 800px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+
+    @include paper-base();
+
+    .m-app-button {
+        margin: 16px auto;
+    }
 }

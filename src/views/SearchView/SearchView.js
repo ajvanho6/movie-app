@@ -4,7 +4,13 @@ import PropTypes from 'prop-types';
 
 import './SearchView.scss';
 import SearchForm from '../../components/SearchForm/SearchForm';
-import {searchMovie, addMovieToFavorites, resetFavorites, fetchMovieTrailer} from '../../actions/movieActions';
+import {
+    searchMovie,
+    addMovieToFavorites,
+    resetFavorites,
+    fetchMovieTrailer,
+    resetTrailers,
+} from '../../actions/movieActions';
 import MovieList from '../../components/MovieList/MovieList';
 import {
     createAllMoviesSelector,
@@ -14,6 +20,8 @@ import {
 } from '../../selectors/movieSelectors';
 import FavoriteList from '../../components/FavoriteList/FavoriteList';
 import {generateSearchMovieByQueryUrl} from '../../api/movieApi';
+import Button from '../../components/Button/Button';
+import Loader from '../../components/Loader/Loader';
 
 class SearchView extends Component {
     static propTypes = {
@@ -25,6 +33,7 @@ class SearchView extends Component {
         resetFavorites: PropTypes.func,
         fetchMovieTrailer: PropTypes.func,
         trailers: PropTypes.array,
+        resetTrailers: PropTypes.func,
     };
 
     static defaultProps = {
@@ -36,6 +45,7 @@ class SearchView extends Component {
         resetFavorites: () => {},
         fetchMovieTrailer: () => {},
         trailers: () => {},
+        resetTrailers: () => {},
     };
 
     state = {
@@ -81,6 +91,7 @@ class SearchView extends Component {
             value: '',
         });
         this.props.resetFavorites();
+        this.props.resetTrailers();
         this.hideFavoriteList();
     }
 
@@ -108,6 +119,7 @@ class SearchView extends Component {
             favoriteMovies,
             fetchMovieTrailer,
             trailers,
+            isSearchingMovies,
         } = this.props;
 
         const {
@@ -118,6 +130,8 @@ class SearchView extends Component {
 
         return (
             <div className="m-app-search-view">
+                {isSearchingMovies && <Loader />}
+
                 {!isFavoritesListShown && (
                     <SearchForm
                         handleSubmit={this.handleSubmit}
@@ -140,17 +154,23 @@ class SearchView extends Component {
                     )}
 
                     {isFavoritesListShown && (
-                    <FavoriteList
-                        favoriteMovies={favoriteMovies}
-                        trailers={trailers}
-                        resetFavorites={this.resetFavorites}
-                    />
+                    <React.Fragment>
+                        <h2 className="m-app-search-view__title">Watch favourite trailers</h2>
+                        <FavoriteList
+                            favoriteMovies={favoriteMovies}
+                            trailers={trailers}
+                            resetFavorites={this.resetFavorites}
+                        />
+                    </React.Fragment>
                     )}
 
                     {(favoriteMovies.length > 0) && !isFavoritesListShown && (
-                        <span className="m-app-search-view__favorites" onClick={this.showFavoriteList}>
+                        <Button
+                            onClick={this.showFavoriteList}
+                            className="m-app-button--primary m-app-button--fixed"
+                        >
                             Show Favorites List
-                        </span>
+                        </Button>
                     )}
                 </div>
 
@@ -177,6 +197,7 @@ const mapDispatchToProps = {
     addMovieToFavorites,
     resetFavorites,
     fetchMovieTrailer,
+    resetTrailers,
 };
 
 export default connect(

@@ -47,6 +47,11 @@ const movieReducer = (state = initialState, action) => {
                 .set(FAVORITE_MOVIES, List([]));
         }
 
+        case movieActionTypes.RESET_MOVIE_TRAILERS: {
+            return state
+                .set(MOVIE_TRAILERS, List([]));
+        }
+
         case movieActionTypes.FETCH_MOVIE_TRAILER_REQUEST: {
             return state;
         }

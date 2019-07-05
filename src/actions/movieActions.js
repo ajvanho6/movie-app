@@ -19,3 +19,8 @@ export const fetchMovieTrailer = payload => ({
     type: movieActionTypes.FETCH_MOVIE_TRAILER,
     payload,
 });
+
+export const resetTrailers = payload => ({
+    type: movieActionTypes.RESET_MOVIE_TRAILERS,
+    payload,
+});

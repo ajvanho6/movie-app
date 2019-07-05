@@ -7,7 +7,7 @@ const FavoriteListItem = ({favoriteMovie, trailer}) => {
     return (
         <li className="m-app-favorite-list-item">
             <div className="m-app-favorite-list-item__inner">
-                {favoriteMovie.title}
+                <h2>{favoriteMovie.title}</h2>
                 <div>
                     <iframe
                         width="420"

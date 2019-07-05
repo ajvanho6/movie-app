@@ -5,4 +5,21 @@ $component-class: m-app-button;
 
 .#{$component-class} {
     position: relative;
+
+    &--primary {
+        border: 1px solid map-get($colors, background-6);
+        color: map-get($colors, text-3);
+        border-radius: 3px;
+        padding: 8px;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    &--fixed {
+        position: fixed;
+        top: 150px;
+        right: 80px;
+    }
 }

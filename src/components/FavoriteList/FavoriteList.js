@@ -27,20 +27,21 @@ class FavoriteList extends Component {
         return (
             <ul className="m-app-favorite-list">
                 {
-                    favoriteMovies.map((favoriteMovie, i) => {
-                        return (
-                            <FavoriteListItem
-                                key={favoriteMovie.id || null}
-                                favoriteMovie={favoriteMovie}
-                                trailer={trailers[i]}
-                            />
-                        );
-                    })
-                }
+                        favoriteMovies.map((favoriteMovie, i) => {
+                            return (
+                                <FavoriteListItem
+                                    key={favoriteMovie.id || null}
+                                    favoriteMovie={favoriteMovie}
+                                    trailer={trailers[i]}
+                                />
+                            );
+                        })
+                    }
                 <Button
                     onClick={resetFavorites}
+                    className="m-app-button--primary"
                 >
-                    Remove favorites
+                        Remove favorites
                 </Button>
             </ul>
         );

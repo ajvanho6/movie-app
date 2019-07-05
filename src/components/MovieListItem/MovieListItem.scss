@@ -6,7 +6,7 @@ $component-class: m-app-movie-list-item;
 .#{$component-class} {
     list-style: none;
     padding: 10px;
-    border-bottom: 1px solid map-get($colors ,background-10);
+    border-bottom: 1px solid map-get($colors, background-10);
     position: relative;
 
     &:last-child {
@@ -30,7 +30,7 @@ $component-class: m-app-movie-list-item;
 
     &__favorites {
         position: absolute;
-        top: 20px;
+        top: 8px;
         right: 20px;
 
         span {
@@ -38,9 +38,9 @@ $component-class: m-app-movie-list-item;
         }
 
         .fa-star {
-            color: map-get($colors ,background-10);
+            color: map-get($colors, background-10);
             font-size: 20px;
-            transition: all .3s ease;
+            transition: all 0.3s ease;
 
             &:hover {
                 cursor: pointer;
@@ -48,7 +48,7 @@ $component-class: m-app-movie-list-item;
         }
 
         &--is-favorite .fa-star {
-            color: map-get($colors ,background-17);
+            color: map-get($colors, background-17);
         }
     }
 }
