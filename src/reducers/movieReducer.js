@@ -5,10 +5,12 @@ export const IS_SEARCHING_MOVIES = 'isSearchingMovies';
 export const ALL_MOVIES = 'allMovies';
 export const FAVORITE_MOVIES = 'favoriteMovies';
 export const MOVIE_TRAILERS = 'movieTrailers';
+export const WATCH_LIST = 'watchList';
 
 const initialState = Map({
     [ALL_MOVIES]: List([]),
     [FAVORITE_MOVIES]: List([]),
+    [WATCH_LIST]: List([]),
     [MOVIE_TRAILERS]: List([]),
     [IS_SEARCHING_MOVIES]: false,
 });
@@ -50,6 +52,17 @@ const movieReducer = (state = initialState, action) => {
         case movieActionTypes.RESET_MOVIE_TRAILERS: {
             return state
                 .set(MOVIE_TRAILERS, List([]));
+        }
+
+        case movieActionTypes.ADD_MOVIE_TO_WATCH_LATER_LIST: {
+            const {watchListMovie} = payload;
+            return state
+                .update(WATCH_LIST, watchListMovies => watchListMovies.push(watchListMovie));
+        }
+
+        case movieActionTypes.RESET_WATCH_LATER_LIST: {
+            return state
+                .set(WATCH_LIST, List([]));
         }
 
         case movieActionTypes.FETCH_MOVIE_TRAILER_REQUEST: {

@@ -15,6 +15,16 @@ export const resetFavorites = payload => ({
     payload,
 });
 
+export const addMovieToWatchLaterList = payload => ({
+    type: movieActionTypes.ADD_MOVIE_TO_WATCH_LATER_LIST,
+    payload,
+});
+
+export const resetWatchLaterList = payload => ({
+    type: movieActionTypes.RESET_WATCH_LATER_LIST,
+    payload,
+});
+
 export const fetchMovieTrailer = payload => ({
     type: movieActionTypes.FETCH_MOVIE_TRAILER,
     payload,

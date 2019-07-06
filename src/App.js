@@ -15,11 +15,6 @@ const App = () => (
     <Router key={new Date()} history={browserHistory}>
         <Route path={routes.ROOT} component={Page}>
             <IndexRoute components={{...components, content: SearchView}} />
-            {/* <Route
-                path={}
-                onEnter={t=}
-                components={{...components, content: }}
-            /> */}
         </Route>
     </Router>
 );

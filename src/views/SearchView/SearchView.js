@@ -10,6 +10,7 @@ import {
     resetFavorites,
     fetchMovieTrailer,
     resetTrailers,
+    addMovieToWatchLaterList,
 } from '../../actions/movieActions';
 import MovieList from '../../components/MovieList/MovieList';
 import {
@@ -34,6 +35,7 @@ class SearchView extends Component {
         fetchMovieTrailer: PropTypes.func,
         trailers: PropTypes.array,
         resetTrailers: PropTypes.func,
+        addMovieToWatchLaterList: PropTypes.func,
     };
 
     static defaultProps = {
@@ -46,6 +48,7 @@ class SearchView extends Component {
         fetchMovieTrailer: () => {},
         trailers: () => {},
         resetTrailers: () => {},
+        addMovieToWatchLaterList: () => {},
     };
 
     state = {
@@ -120,6 +123,7 @@ class SearchView extends Component {
             fetchMovieTrailer,
             trailers,
             isSearchingMovies,
+            addMovieToWatchLaterList,
         } = this.props;
 
         const {
@@ -149,6 +153,7 @@ class SearchView extends Component {
                         movies={movies}
                         fetchMovieTrailer={fetchMovieTrailer}
                         addMovieToFavorites={addMovieToFavorites}
+                        addMovieToWatchLaterList={addMovieToWatchLaterList}
                         isFavoriteListEmpty={this.checkFavoriteList()}
                     />
                     )}
@@ -198,6 +203,7 @@ const mapDispatchToProps = {
     resetFavorites,
     fetchMovieTrailer,
     resetTrailers,
+    addMovieToWatchLaterList,
 };
 
 export default connect(

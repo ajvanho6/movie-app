@@ -51,4 +51,11 @@ $component-class: m-app-movie-list-item;
             color: map-get($colors, background-17);
         }
     }
+
+    &__watch-later {
+        font-size: 20px;
+        background: rgba(255, 255, 255, 0.5);
+        position: absolute;
+        left: 8px;
+    }
 }

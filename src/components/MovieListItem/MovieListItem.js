@@ -4,7 +4,7 @@ import moment from 'moment';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faStar} from '@fortawesome/free-solid-svg-icons';
+import {faStar, faClock} from '@fortawesome/free-solid-svg-icons';
 
 import './MovieListItem.scss';
 import {IMAGE_PATH_POSTER} from '../../consts/imagePath';
@@ -17,6 +17,7 @@ class MovieListItem extends Component {
         movie: PropTypes.object.isRequired,
         addFavorites: PropTypes.func.isRequired,
         isFavoriteListEmpty: PropTypes.bool,
+        addToWatchList: PropTypes.func.isRequired,
     };
 
     static defaultProps = {
@@ -34,6 +35,10 @@ class MovieListItem extends Component {
         this.props.addFavorites(favoriteMovie);
     }
 
+    addToWatchList = watchListMovie => {
+        this.props.addToWatchList(watchListMovie);
+    }
+
     render() {
         const {movie, isFavoriteListEmpty} = this.props;
         const {isFavorite} = this.state;
@@ -49,6 +54,9 @@ class MovieListItem extends Component {
                                 }
                         alt={movie.title}
                     />
+                    <div className="m-app-movie-list-item__watch-later">
+                        <FontAwesomeIcon onClick={() => this.addToWatchList(movie)} icon={faClock} />
+                    </div>
                     <div className="m-app-movie-list-item__info-holder">
                         <div className={classNames({
                             'm-app-movie-list-item__favorites': true,

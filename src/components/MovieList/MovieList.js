@@ -11,6 +11,7 @@ class MovieList extends Component {
         isFavoriteListEmpty: PropTypes.bool,
         addMovieToFavorites: PropTypes.func,
         fetchMovieTrailer: PropTypes.func,
+        addMovieToWatchLaterList: PropTypes.func,
     };
 
    static defaultProps = {
@@ -18,6 +19,7 @@ class MovieList extends Component {
        isFavoriteListEmpty: false,
        addMovieToFavorites: () => {},
        fetchMovieTrailer: () => {},
+       addMovieToWatchLaterList: () => {},
    };
 
     state = {}
@@ -28,6 +30,12 @@ class MovieList extends Component {
         });
 
         this.fetchMovieTrailer(favoriteMovie.id);
+    }
+
+    addToWatchList = watchListMovie => {
+        this.props.addMovieToWatchLaterList({
+            watchListMovie,
+        });
     }
 
     fetchMovieTrailer = movieID => {
@@ -46,6 +54,7 @@ class MovieList extends Component {
                                 key={movie.id || null}
                                 movie={movie}
                                 addFavorites={this.addFavorites}
+                                addToWatchList={this.addToWatchList}
                                 isFavoriteListEmpty={isFavoriteListEmpty}
                             />
                         );
