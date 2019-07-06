@@ -6,8 +6,18 @@ $component-class: m-app-favorite-list-item;
 .#{$component-class} {
     display: flex;
     list-style: none;
+    width: 100%;
 
     h2 {
         margin: 8px auto;
+    }
+
+    &__no-trailer {
+        padding: 32px 0;
+        width: 420px;
+    }
+
+    &__inner {
+        margin: 0 auto 8px auto;
     }
 }
