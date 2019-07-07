@@ -1,0 +1,8 @@
+@import '../../styles/config';
+@import '../../styles/mixins';
+
+$component-class: m-app-watch-later-list;
+
+.#{$component-class} {
+    display: flex;
+}

@@ -11,6 +11,7 @@ import {
     fetchMovieTrailer,
     resetTrailers,
     addMovieToWatchLaterList,
+    resetWatchLaterList,
 } from '../../actions/movieActions';
 import MovieList from '../../components/MovieList/MovieList';
 import {
@@ -18,11 +19,13 @@ import {
     createIsSearchingMoviesSelector,
     createFavoritesMoviesSelector,
     createMoviesTrailerSelector,
+    createWatchLaterMoviesSelector,
 } from '../../selectors/movieSelectors';
 import FavoriteList from '../../components/FavoriteList/FavoriteList';
 import {generateSearchMovieByQueryUrl} from '../../api/movieApi';
 import Button from '../../components/Button/Button';
 import Loader from '../../components/Loader/Loader';
+import WatchLaterList from '../../components/WatchLaterList/WatchLaterList';
 
 class SearchView extends Component {
     static propTypes = {
@@ -36,6 +39,8 @@ class SearchView extends Component {
         trailers: PropTypes.array,
         resetTrailers: PropTypes.func,
         addMovieToWatchLaterList: PropTypes.func,
+        watchLaterMovies: PropTypes.array,
+        resetWatchLaterList: PropTypes.func,
     };
 
     static defaultProps = {
@@ -49,6 +54,8 @@ class SearchView extends Component {
         trailers: () => {},
         resetTrailers: () => {},
         addMovieToWatchLaterList: () => {},
+        watchLaterMovies: [],
+        resetWatchLaterList: () => {},
     };
 
     state = {
@@ -124,6 +131,8 @@ class SearchView extends Component {
             trailers,
             isSearchingMovies,
             addMovieToWatchLaterList,
+            watchLaterMovies,
+            resetWatchLaterList,
         } = this.props;
 
         const {
@@ -177,6 +186,11 @@ class SearchView extends Component {
                             Show Favorites List
                         </Button>
                     )}
+
+                    <WatchLaterList
+                        resetWatchLaterList={resetWatchLaterList}
+                        watchLaterMovies={watchLaterMovies}
+                    />
                 </div>
 
             </div>
@@ -189,11 +203,14 @@ const mapStateToProps = state => {
     const selectIsSearchingMovies = createIsSearchingMoviesSelector();
     const selectFavoritesMovies = createFavoritesMoviesSelector();
     const selectMoviesTrailerSelector = createMoviesTrailerSelector();
+    const selectWatchLaterMoviesSelector = createWatchLaterMoviesSelector();
+
     return {
         movies: selectAllMovies(state),
         isSearchingMovies: selectIsSearchingMovies(state),
         favoriteMovies: selectFavoritesMovies(state),
         trailers: selectMoviesTrailerSelector(state),
+        watchLaterMovies: selectWatchLaterMoviesSelector(state),
     };
 };
 
@@ -204,6 +221,7 @@ const mapDispatchToProps = {
     fetchMovieTrailer,
     resetTrailers,
     addMovieToWatchLaterList,
+    resetWatchLaterList,
 };
 
 export default connect(

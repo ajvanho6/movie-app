@@ -4,6 +4,7 @@ import {
     ALL_MOVIES,
     FAVORITE_MOVIES,
     MOVIE_TRAILERS,
+    WATCH_LIST,
 } from '../reducers/movieReducer';
 
 export const selectMovies = state => state.movies;
@@ -46,5 +47,14 @@ export const createIsSearchingMoviesSelector = () => createSelector(
         }
 
         return movies.get(IS_SEARCHING_MOVIES);
+    },
+);
+
+export const createWatchLaterMoviesSelector = () => createSelector(
+    [
+        selectMovies,
+    ],
+    movies => {
+        return movies.get(WATCH_LIST).toJS();
     },
 );
