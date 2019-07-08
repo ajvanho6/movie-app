@@ -15,13 +15,18 @@ $component-class: m-app-movie-list-item;
 
     &__inner {
         display: flex;
+        align-items: center;
     }
 
     &__info-holder {
         display: flex;
         flex-direction: column;
-        height: 278px;
+        min-height: 278px;
         justify-content: center;
+    }
+
+    &__image-holder {
+        position: relative;
     }
 
     &__rating {
@@ -55,8 +60,23 @@ $component-class: m-app-movie-list-item;
 
     &__watch-later {
         font-size: 20px;
-        background: rgba(255, 255, 255, 0.5);
+        background: rgba(map-get($colors, background-5), 0.5);
         position: absolute;
-        left: 10px;
+        left: 0;
+        top: 0;
+        padding: 4px;
+
+        &--is-watch-list {
+            pointer-events: none;
+        }
+
+        .fa-clock,
+        .fa-check {
+            transition: all 0.3s ease;
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
     }
 }

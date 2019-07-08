@@ -1,27 +1,26 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
-
 import './MovieList.scss';
 import MovieListItem from '../MovieListItem/MovieListItem';
 
 class MovieList extends Component {
     static propTypes = {
         movies: PropTypes.array,
-        isFavoriteListEmpty: PropTypes.bool,
         addMovieToFavorites: PropTypes.func,
         fetchMovieTrailer: PropTypes.func,
         addMovieToWatchLaterList: PropTypes.func,
         favoriteMovies: PropTypes.array,
+        watchLaterMovies: PropTypes.array,
     };
 
    static defaultProps = {
        movies: [],
-       isFavoriteListEmpty: false,
        addMovieToFavorites: () => {},
        fetchMovieTrailer: () => {},
        addMovieToWatchLaterList: () => {},
        favoriteMovies: [],
+       watchLaterMovies: [],
    };
 
     state = {}
@@ -52,8 +51,16 @@ class MovieList extends Component {
         });
     }
 
+    isItemInWatchLaterList = id => {
+        const {watchLaterMovies} = this.props;
+
+        return watchLaterMovies.some(watchLaterMovie => {
+            return watchLaterMovie.id === id;
+        });
+    }
+
     render() {
-        const {movies, isFavoriteListEmpty} = this.props;
+        const {movies} = this.props;
 
         return (
             <ul className="m-app-movie-list">
@@ -65,8 +72,8 @@ class MovieList extends Component {
                                 movie={movie}
                                 addFavorites={this.addFavorites}
                                 addToWatchList={this.addToWatchList}
-                                isFavoriteListEmpty={isFavoriteListEmpty}
                                 isItemInFavoriteList={this.isItemInFavoriteList(movie.id)}
+                                isItemInWatchLaterList={this.isItemInWatchLaterList(movie.id)}
                             />
                         );
                     })

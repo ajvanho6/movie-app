@@ -81,14 +81,6 @@ class SearchView extends Component {
         this.props.searchMovie(this.createPayload());
     }
 
-    checkFavoriteList = () => {
-        const {favoriteMovies} = this.props;
-        if (favoriteMovies.length > 0) {
-            return true;
-        }
-        return false;
-    }
-
     showFavoriteList = () => {
         this.setState({
             isFavoritesListShown: true,
@@ -193,10 +185,10 @@ class SearchView extends Component {
                         <MovieList
                             movies={movies}
                             favoriteMovies={favoriteMovies}
+                            watchLaterMovies={watchLaterMovies}
                             fetchMovieTrailer={fetchMovieTrailer}
                             addMovieToFavorites={addMovieToFavorites}
                             addMovieToWatchLaterList={addMovieToWatchLaterList}
-                            isFavoriteListEmpty={this.checkFavoriteList()}
                         />
                     )}
 
