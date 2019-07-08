@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faChevronLeft} from '@fortawesome/free-solid-svg-icons';
+import Notifications from 'react-notify-toast';
 
 
 import './SearchView.scss';
@@ -246,7 +247,7 @@ class SearchView extends Component {
                     </Button>
                     )}
                 </div>
-
+                <Notifications />
             </div>
         );
     }

@@ -49,6 +49,7 @@ $component-class: m-app-movie-list-item;
 
         &--is-favorite .fa-star {
             color: map-get($colors, background-17);
+            pointer-events: none;
         }
     }
 
@@ -56,6 +57,6 @@ $component-class: m-app-movie-list-item;
         font-size: 20px;
         background: rgba(255, 255, 255, 0.5);
         position: absolute;
-        left: 8px;
+        left: 10px;
     }
 }

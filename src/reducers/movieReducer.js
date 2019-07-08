@@ -1,4 +1,5 @@
 import {List, Map} from 'immutable';
+import {notify} from 'react-notify-toast';
 import * as movieActionTypes from '../actionTypes/movieActionTypes';
 
 export const IS_SEARCHING_MOVIES = 'isSearchingMovies';
@@ -14,6 +15,8 @@ const initialState = Map({
     [MOVIE_TRAILERS]: List([]),
     [IS_SEARCHING_MOVIES]: false,
 });
+
+const notificationColor = {background: '#0E1717', text: '#FFFFFF'};
 
 const movieReducer = (state = initialState, action) => {
     const {type, payload} = action;
@@ -40,6 +43,7 @@ const movieReducer = (state = initialState, action) => {
         // local savings no required session_id for api /favourite endpoint
         case movieActionTypes.ADD_MOVIE_TO_FAVORITES: {
             const {favoriteMovie} = payload;
+            notify.show('Added to favorites', 'custom', 1000, notificationColor);
             return state
                 .update(FAVORITE_MOVIES, favoriteMovies => favoriteMovies.push(favoriteMovie));
         }
@@ -56,6 +60,8 @@ const movieReducer = (state = initialState, action) => {
 
         case movieActionTypes.ADD_MOVIE_TO_WATCH_LATER_LIST: {
             const {watchListMovie} = payload;
+
+            notify.show('Added to Watch List', 'custom', 1000, notificationColor);
             return state
                 .update(WATCH_LIST, watchListMovies => watchListMovies.push(watchListMovie));
         }

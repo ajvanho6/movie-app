@@ -24,4 +24,20 @@ $component-class: m-app-search-view;
             cursor: pointer;
         }
     }
+
+    .Toastify {
+        position: absolute;
+        top: 65px;
+        left: 0;
+        border-radius: 3px;
+
+        &__toast-body {
+            padding: 16px;
+        }
+
+        &__toast {
+            background: map-get($colors, background-12);
+            margin-bottom: 4px;
+        }
+    }
 }
