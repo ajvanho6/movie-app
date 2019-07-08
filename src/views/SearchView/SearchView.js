@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faChevronLeft} from '@fortawesome/free-solid-svg-icons';
+
 
 import './SearchView.scss';
 import SearchForm from '../../components/SearchForm/SearchForm';
@@ -61,6 +64,7 @@ class SearchView extends Component {
     state = {
         value: '',
         isFavoritesListShown: false,
+        isWatchLaterListShown: false,
         suggestions: [],
     };
 
@@ -96,6 +100,18 @@ class SearchView extends Component {
         });
     }
 
+    showWatchLaterList = () => {
+        this.setState({
+            isWatchLaterListShown: true,
+        });
+    }
+
+    hideWatchLaterList = () => {
+        this.setState({
+            isWatchLaterListShown: false,
+        });
+    }
+
     resetFavorites = () => {
         this.setState({
             value: '',
@@ -103,6 +119,14 @@ class SearchView extends Component {
         this.props.resetFavorites();
         this.props.resetTrailers();
         this.hideFavoriteList();
+    }
+
+    resetWatchLaterList = () => {
+        this.setState({
+            value: '',
+        });
+        this.props.resetWatchLaterList();
+        this.hideWatchLaterList();
     }
 
     handleAutoSuggestChange = (event, {newValue}) => {
@@ -122,6 +146,11 @@ class SearchView extends Component {
             .then(data => this.setState({suggestions: data.results}));
     }
 
+    onBack = () => {
+        this.hideFavoriteList();
+        this.hideWatchLaterList();
+    }
+
     render() {
         const {
             movies,
@@ -132,11 +161,11 @@ class SearchView extends Component {
             isSearchingMovies,
             addMovieToWatchLaterList,
             watchLaterMovies,
-            resetWatchLaterList,
         } = this.props;
 
         const {
             isFavoritesListShown,
+            isWatchLaterListShown,
             suggestions,
             value,
         } = this.state;
@@ -145,7 +174,7 @@ class SearchView extends Component {
             <div className="m-app-search-view">
                 {isSearchingMovies && <Loader />}
 
-                {!isFavoritesListShown && (
+                {!isFavoritesListShown && !isWatchLaterListShown && (
                     <SearchForm
                         handleSubmit={this.handleSubmit}
                         suggestions={suggestions}
@@ -157,19 +186,25 @@ class SearchView extends Component {
                     />
                 )}
                 <div>
-                    {(movies.length > 0) && !isFavoritesListShown && (
-                    <MovieList
-                        movies={movies}
-                        fetchMovieTrailer={fetchMovieTrailer}
-                        addMovieToFavorites={addMovieToFavorites}
-                        addMovieToWatchLaterList={addMovieToWatchLaterList}
-                        isFavoriteListEmpty={this.checkFavoriteList()}
-                    />
+                    {(movies.length > 0)
+                        && !isFavoritesListShown
+                        && !isWatchLaterListShown && (
+                        <MovieList
+                            movies={movies}
+                            fetchMovieTrailer={fetchMovieTrailer}
+                            addMovieToFavorites={addMovieToFavorites}
+                            addMovieToWatchLaterList={addMovieToWatchLaterList}
+                            isFavoriteListEmpty={this.checkFavoriteList()}
+                        />
                     )}
 
                     {isFavoritesListShown && (
                     <React.Fragment>
                         <h2 className="m-app-search-view__title">Watch favourite trailers</h2>
+                        <div className="m-app-search-view__back" onClick={this.onBack}>
+                            <FontAwesomeIcon icon={faChevronLeft} />
+                            Back
+                        </div>
                         <FavoriteList
                             favoriteMovies={favoriteMovies}
                             trailers={trailers}
@@ -178,7 +213,7 @@ class SearchView extends Component {
                     </React.Fragment>
                     )}
 
-                    {(favoriteMovies.length > 0) && !isFavoritesListShown && (
+                    {(favoriteMovies.length > 0) && !isFavoritesListShown && !isWatchLaterListShown && (
                         <Button
                             onClick={this.showFavoriteList}
                             className="m-app-button--primary m-app-button--fixed"
@@ -187,10 +222,28 @@ class SearchView extends Component {
                         </Button>
                     )}
 
-                    <WatchLaterList
-                        resetWatchLaterList={resetWatchLaterList}
-                        watchLaterMovies={watchLaterMovies}
-                    />
+                    {isWatchLaterListShown && (
+                        <React.Fragment>
+                            <h2 className="m-app-search-view__title">Watch later list</h2>
+                            <div className="m-app-search-view__back" onClick={this.onBack}>
+                                <FontAwesomeIcon icon={faChevronLeft} />
+                                Back
+                            </div>
+                            <WatchLaterList
+                                resetWatchLaterList={this.resetWatchLaterList}
+                                watchLaterMovies={watchLaterMovies}
+                            />
+                        </React.Fragment>
+                    )}
+
+                    {(watchLaterMovies.length > 0) && !isWatchLaterListShown && !isFavoritesListShown && (
+                    <Button
+                        onClick={this.showWatchLaterList}
+                        className="m-app-button--primary m-app-button--fixed m-app-button--fixed-watch"
+                    >
+                            Watch List
+                    </Button>
+                    )}
                 </div>
 
             </div>

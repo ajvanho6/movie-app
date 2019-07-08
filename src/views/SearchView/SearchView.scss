@@ -11,4 +11,17 @@ $component-class: m-app-search-view;
         margin: 32px auto;
         text-align: center;
     }
+
+    &__back {
+        margin: 0 auto;
+        max-width: 800px;
+
+        svg {
+            margin-right: 8px;
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
 }

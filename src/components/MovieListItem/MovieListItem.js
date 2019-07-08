@@ -7,9 +7,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faStar, faClock} from '@fortawesome/free-solid-svg-icons';
 
 import './MovieListItem.scss';
-import {IMAGE_PATH_POSTER} from '../../consts/imagePath';
-
-const DEFAULT_POSTER = 'https://via.placeholder.com/185x278';
+import {IMAGE_PATH_POSTER, DEFAULT_POSTER} from '../../consts/imagePath';
 
 
 class MovieListItem extends Component {

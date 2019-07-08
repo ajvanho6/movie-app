@@ -5,4 +5,23 @@ $component-class: m-app-watch-later-list-item;
 
 .#{$component-class} {
     display: flex;
+    border-bottom: 1px solid map-get($colors, background-13);
+
+    &:last-of-type {
+        border-bottom: none;
+        margin-bottom: 16px;
+    }
+
+    &__inner {
+        display: flex;
+        padding: 10px 0;
+    }
+
+    img {
+        margin-right: 16px;
+    }
+
+    h2 {
+        margin-bottom: 8px;
+    }
 }

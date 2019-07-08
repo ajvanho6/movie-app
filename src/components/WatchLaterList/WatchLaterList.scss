@@ -5,4 +5,11 @@ $component-class: m-app-watch-later-list;
 
 .#{$component-class} {
     display: flex;
+    flex-direction: column;
+    padding: 16px;
+    max-width: 800px;
+    margin: 0 auto;
+    margin-top: 16px;
+
+    @include paper-base();
 }

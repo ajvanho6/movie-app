@@ -22,4 +22,9 @@ $component-class: m-app-button;
         top: 150px;
         right: 80px;
     }
+
+    &--fixed-watch {
+        top: 200px;
+        min-width: 156px;
+    }
 }
