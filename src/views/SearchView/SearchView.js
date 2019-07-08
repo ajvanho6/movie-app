@@ -191,6 +191,7 @@ class SearchView extends Component {
                         && !isWatchLaterListShown && (
                         <MovieList
                             movies={movies}
+                            favoriteMovies={favoriteMovies}
                             fetchMovieTrailer={fetchMovieTrailer}
                             addMovieToFavorites={addMovieToFavorites}
                             addMovieToWatchLaterList={addMovieToWatchLaterList}

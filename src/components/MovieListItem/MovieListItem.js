@@ -16,15 +16,25 @@ class MovieListItem extends Component {
         addFavorites: PropTypes.func.isRequired,
         isFavoriteListEmpty: PropTypes.bool,
         addToWatchList: PropTypes.func.isRequired,
+        isItemInFavoriteList: PropTypes.bool,
     };
 
     static defaultProps = {
         isFavoriteListEmpty: false,
+        isItemInFavoriteList: false,
     };
 
     state = {
         isFavorite: false,
     };
+
+    componentDidMount() {
+        if (this.props.isItemInFavoriteList) {
+            this.setState({
+                isFavorite: true,
+            });
+        }
+    }
 
     addFavorites = favoriteMovie => {
         this.setState({

@@ -10,6 +10,7 @@ $component-class: m-app-favorite-list-item;
 
     h2 {
         margin: 8px auto;
+        word-break: break-all;
     }
 
     &__no-trailer {
@@ -19,5 +20,6 @@ $component-class: m-app-favorite-list-item;
 
     &__inner {
         margin: 0 auto 8px auto;
+        max-width: 420px;
     }
 }
