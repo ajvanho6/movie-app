@@ -13,8 +13,8 @@ import {IMAGE_PATH_POSTER, DEFAULT_POSTER} from '../../consts/imagePath';
 class MovieListItem extends Component {
     static propTypes = {
         movie: PropTypes.object.isRequired,
-        addFavorites: PropTypes.func.isRequired,
-        addToWatchList: PropTypes.func.isRequired,
+        addFavorites: PropTypes.func,
+        addToWatchList: PropTypes.func,
         isItemInFavoriteList: PropTypes.bool,
         isItemInWatchLaterList: PropTypes.bool,
     };
@@ -22,6 +22,8 @@ class MovieListItem extends Component {
     static defaultProps = {
         isItemInFavoriteList: false,
         isItemInWatchLaterList: false,
+        addFavorites: () => {},
+        addToWatchList: () => {},
     };
 
     state = {

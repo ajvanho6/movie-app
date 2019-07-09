@@ -6,12 +6,11 @@ import './Input.scss';
 
 const Input = ({className, ...rest}) => {
     const classes = classNames(
-        'm-app-input',
         className,
     );
 
     return (
-        <div className={classes}>
+        <div className="m-app-input">
             <input className={classes} {...rest} />
         </div>
     );
