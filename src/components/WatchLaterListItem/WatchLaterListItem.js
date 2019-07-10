@@ -11,7 +11,7 @@ const WatchLaterListItem = ({watchLaterMovie}) => {
             <div className="m-app-watch-later-list-item__inner">
                 <img
                     src={
-                        watchLaterMovie.backdrop_path.poster_path !== null
+                        watchLaterMovie.backdrop_path !== null
                             ? `${IMAGE_PATH_POSTER}${watchLaterMovie.backdrop_path}`
                             : `${WATCH_LATER_POSTER}`
                                 }
