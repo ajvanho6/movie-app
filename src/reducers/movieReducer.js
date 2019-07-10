@@ -16,7 +16,7 @@ const initialState = Map({
     [IS_SEARCHING_MOVIES]: false,
 });
 
-const notificationColor = {background: '#0E1717', text: '#FFFFFF'};
+const notificationColor = {background: '#202225', text: '#FFFFFF'};
 
 const movieReducer = (state = initialState, action) => {
     const {type, payload} = action;
@@ -43,6 +43,7 @@ const movieReducer = (state = initialState, action) => {
         // local savings no required session_id for api /favourite endpoint
         case movieActionTypes.ADD_MOVIE_TO_FAVORITES: {
             const {favoriteMovie} = payload;
+
             notify.show('Added to favorites', 'custom', 1000, notificationColor);
             return state
                 .update(FAVORITE_MOVIES, favoriteMovies => favoriteMovies.push(favoriteMovie));

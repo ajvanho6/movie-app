@@ -235,7 +235,7 @@ class SearchView extends Component {
                         onClick={this.showWatchLaterList}
                         className="m-app-button--primary m-app-button--fixed m-app-button--fixed-watch"
                     >
-                            Watch List
+                        Watch List
                     </Button>
                     )}
                 </div>

@@ -11,5 +11,6 @@ $component-class: m-app-header;
     height: 50px;
     background: map-get($colors, background-10);
     font-size: 32px;
-    font-weight: 500;
+    font-weight: 800;
+    color: map-get($colors, background-12);
 }

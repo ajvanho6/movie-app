@@ -10,34 +10,21 @@ $component-class: m-app-search-view;
     &__title {
         margin: 32px auto;
         text-align: center;
+        color: map-get($colors, text-4);
     }
 
     &__back {
         margin: 0 auto;
         max-width: 800px;
+        color: map-get($colors, text-4);
 
         svg {
             margin-right: 8px;
+            fill: map-get($colors, text-4);
         }
 
         &:hover {
             cursor: pointer;
-        }
-    }
-
-    .Toastify {
-        position: absolute;
-        top: 65px;
-        left: 0;
-        border-radius: 3px;
-
-        &__toast-body {
-            padding: 16px;
-        }
-
-        &__toast {
-            background: map-get($colors, background-12);
-            margin-bottom: 4px;
         }
     }
 }

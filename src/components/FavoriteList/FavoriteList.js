@@ -39,7 +39,7 @@ class FavoriteList extends Component {
                     }
                 <Button
                     onClick={resetFavorites}
-                    className="m-app-button--primary"
+                    className="m-app-button--primary m-app-button--reverted-color"
                 >
                         Remove favorites
                 </Button>

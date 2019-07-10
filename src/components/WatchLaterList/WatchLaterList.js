@@ -35,7 +35,7 @@ class WatchLaterList extends Component {
                 }
                 <Button
                     onClick={resetWatchLaterList}
-                    className="m-app-button--primary"
+                    className="m-app-button--primary m-app-button--reverted-color"
                 >
                     Remove movies from watch list
                 </Button>

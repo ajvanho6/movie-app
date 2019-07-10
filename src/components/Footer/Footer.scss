@@ -9,6 +9,7 @@ $component-class: m-app-footer;
     align-items: center;
     justify-content: center;
     width: 100%;
+    background: map-get($colors, background-11);
 
     span {
         margin-left: 5px;
