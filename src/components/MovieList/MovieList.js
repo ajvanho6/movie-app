@@ -1,86 +1,82 @@
-import React, {Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import './MovieList.scss';
 import MovieListItem from '../MovieListItem/MovieListItem';
 
-class MovieList extends Component {
-    static propTypes = {
-        movies: PropTypes.array,
-        addMovieToFavorites: PropTypes.func,
-        fetchMovieTrailer: PropTypes.func,
-        addMovieToWatchLaterList: PropTypes.func,
-        favoriteMovies: PropTypes.array,
-        watchLaterMovies: PropTypes.array,
-    };
-
-   static defaultProps = {
-       movies: [],
-       addMovieToFavorites: () => {},
-       fetchMovieTrailer: () => {},
-       addMovieToWatchLaterList: () => {},
-       favoriteMovies: [],
-       watchLaterMovies: [],
-   };
-
-    state = {}
-
-    addFavorites = favoriteMovie => {
-        this.props.addMovieToFavorites({
+const MovieList = ({
+    movies,
+    watchLaterMovies,
+    favoriteMovies,
+    addMovieToFavorites,
+    addMovieToWatchLaterList,
+    fetchMovieTrailer,
+}) => {
+    const addFavorites = favoriteMovie => {
+        getMovieTrailer(favoriteMovie.id);
+        return addMovieToFavorites({
             favoriteMovie,
         });
+    };
 
-        this.fetchMovieTrailer(favoriteMovie.id);
-    }
-
-    addToWatchList = watchListMovie => {
-        this.props.addMovieToWatchLaterList({
+    const addToWatchList = watchListMovie => {
+        return addMovieToWatchLaterList({
             watchListMovie,
         });
-    }
+    };
 
-    fetchMovieTrailer = movieID => {
-        this.props.fetchMovieTrailer({movieID});
-    }
+    const getMovieTrailer = movieID => {
+        return fetchMovieTrailer({movieID});
+    };
 
-    isItemInFavoriteList = id => {
-        const {favoriteMovies} = this.props;
-
+    const isItemInFavoriteList = id => {
         return favoriteMovies.some(favoriteMovie => {
             return favoriteMovie.id === id;
         });
-    }
+    };
 
-    isItemInWatchLaterList = id => {
-        const {watchLaterMovies} = this.props;
-
+    const isItemInWatchLaterList = id => {
         return watchLaterMovies.some(watchLaterMovie => {
             return watchLaterMovie.id === id;
         });
-    }
+    };
 
-    render() {
-        const {movies} = this.props;
+    return (
+        <ul className="m-app-movie-list">
+            {
+                movies.map(movie => {
+                    return (
+                        <MovieListItem
+                            key={movie.id || null}
+                            movie={movie}
+                            addFavorites={addFavorites}
+                            addToWatchList={addToWatchList}
+                            isItemInFavoriteList={isItemInFavoriteList(movie.id)}
+                            isItemInWatchLaterList={isItemInWatchLaterList(movie.id)}
+                        />
+                    );
+                })
+            }
+        </ul>
+    );
+};
 
-        return (
-            <ul className="m-app-movie-list">
-                {
-                    movies.map(movie => {
-                        return (
-                            <MovieListItem
-                                key={movie.id || null}
-                                movie={movie}
-                                addFavorites={this.addFavorites}
-                                addToWatchList={this.addToWatchList}
-                                isItemInFavoriteList={this.isItemInFavoriteList(movie.id)}
-                                isItemInWatchLaterList={this.isItemInWatchLaterList(movie.id)}
-                            />
-                        );
-                    })
-                }
-            </ul>
-        );
-    }
-}
+MovieList.propTypes = {
+    movies: PropTypes.array,
+    addMovieToFavorites: PropTypes.func,
+    fetchMovieTrailer: PropTypes.func,
+    addMovieToWatchLaterList: PropTypes.func,
+    favoriteMovies: PropTypes.array,
+    watchLaterMovies: PropTypes.array,
+};
+
+MovieList.defaultProps = {
+    movies: [],
+    addMovieToFavorites: () => {},
+    fetchMovieTrailer: () => {},
+    addMovieToWatchLaterList: () => {},
+    favoriteMovies: [],
+    watchLaterMovies: [],
+};
 
 export default MovieList;

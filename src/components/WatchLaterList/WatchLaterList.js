@@ -1,29 +1,14 @@
-import React, {Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import './WatchLaterList.scss';
 import Button from '../Button/Button';
 import WatchLaterListItem from '../WatchLaterListItem/WatchLaterListItem';
 
-class WatchLaterList extends Component {
-    static propTypes = {
-        resetWatchLaterList: PropTypes.func,
-        watchLaterMovies: PropTypes.array,
-    };
-
-    static defaultProps = {
-        resetWatchLaterList: () => {},
-        watchLaterMovies: [],
-    };
-
-    state = {};
-
-    render() {
-        const {watchLaterMovies, resetWatchLaterList} = this.props;
-
-        return (
-            <ul className="m-app-watch-later-list">
-                {
+const WatchLaterList = ({watchLaterMovies, resetWatchLaterList}) => {
+    return (
+        <ul className="m-app-watch-later-list">
+            {
                     watchLaterMovies.map(watchLaterMovie => {
                         return (
                             <WatchLaterListItem
@@ -33,15 +18,24 @@ class WatchLaterList extends Component {
                         );
                     })
                 }
-                <Button
-                    onClick={resetWatchLaterList}
-                    className="m-app-button--primary m-app-button--reverted-color"
-                >
+            <Button
+                onClick={resetWatchLaterList}
+                className="m-app-button--primary m-app-button--reverted-color"
+            >
                     Remove movies from watch list
-                </Button>
-            </ul>
-        );
-    }
-}
+            </Button>
+        </ul>
+    );
+};
+
+WatchLaterList.propTypes = {
+    resetWatchLaterList: PropTypes.func,
+    watchLaterMovies: PropTypes.array,
+};
+
+WatchLaterList.defaultProps = {
+    resetWatchLaterList: () => {},
+    watchLaterMovies: [],
+};
 
 export default WatchLaterList;
