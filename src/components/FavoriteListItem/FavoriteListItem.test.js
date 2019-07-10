@@ -23,6 +23,7 @@ describe('Favorite List Item tests', () => {
         };
         const wrapper = shallow(<FavoriteListItem favoriteMovie={favoriteMovie} trailer={trailer} />);
 
-        expect(wrapper.find('.m-app-favorite-list-item')).toBeDefined();
+        expect(wrapper.find('h2')).toBeDefined();
+        expect(wrapper.find('iframe')).toBeDefined();
     });
 });
